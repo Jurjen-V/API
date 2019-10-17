@@ -48,4 +48,36 @@ class Uitleen{
         return false;
          
     }
+    public function update(){
+        $query = "UPDATE
+                " . $this->table_name . "
+            SET
+                Lener_ID = :Lener_ID,
+                Object_ID = :Object_ID,
+                Uitleendatum = :Uitleendatum,
+                Inleverdatum = :Inleverdatum
+            WHERE
+                Uitleen_ID = :Uitleen_ID";
+        // prepare query statement
+        $stmt = $this->connection->prepare($query);
+        // sanitize
+        $this->Uitleen_ID=htmlspecialchars(strip_tags($this->Uitleen_ID));
+        $this->Lener_ID=htmlspecialchars(strip_tags($this->Lener_ID));
+        $this->Object_ID=htmlspecialchars(strip_tags($this->Object_ID));
+        $this->Uitleendatum=htmlspecialchars(strip_tags($this->Uitleendatum));
+        $this->Inleverdatum=htmlspecialchars(strip_tags($this->Inleverdatum));
+        // bind new values
+        $stmt->bindParam(':Uitleen_ID', $this->Uitleen_ID);
+        $stmt->bindParam(':Lener_ID', $this->Lener_ID);
+        $stmt->bindParam(':Object_ID', $this->Object_ID);
+        $stmt->bindParam(':Uitleendatum', $this->Uitleendatum);
+        $stmt->bindParam(':Inleverdatum', $this->Inleverdatum);
+        // execute the query
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+ 
+   }
+
 }

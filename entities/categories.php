@@ -61,5 +61,26 @@ class Categorie{
      
         return $stmt;
     }
+    public function update(){
+        $query = "UPDATE
+                " . $this->table_name . "
+            SET
+                Categorie_naam = :Categorie_naam
+            WHERE
+                Categorie_ID = :Categorie_ID";
+        // prepare query statement
+        $stmt = $this->connection->prepare($query);
+        // sanitize
+        $this->Categorie_naam=htmlspecialchars(strip_tags($this->Categorie_naam));
+        $this->Categorie_ID=htmlspecialchars(strip_tags($this->Categorie_ID));
+        // bind new values
+        $stmt->bindParam(':Categorie_naam', $this->Categorie_naam);
+        $stmt->bindParam(':Categorie_ID', $this->Categorie_ID);
+        // execute the query
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
 
 }
