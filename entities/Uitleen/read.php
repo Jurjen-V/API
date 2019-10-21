@@ -4,7 +4,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../../Config/database.php';
 include_once '../../entities/uitleen.php';
 
-$dbclass = new DBClass();
+$dbclass = new Database();
 
 $connection = $dbclass->getConnection();
 $Uitleen = new Uitleen($connection);

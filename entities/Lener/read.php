@@ -4,10 +4,10 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../../Config/database.php';
 include_once '../../entities/Lener.php';
 
-$dbclass = new DBClass();
+$dbclass = new Database();
 
 $connection = $dbclass->getConnection();
-$Lener = new Lener($connection);
+$Lener = new Leners($connection);
 
 $stmt = $Lener->read();
 $count = $stmt->rowCount();
@@ -16,9 +16,7 @@ if($count > 0){
   $Lener = array();
   $Lener["body"] = array();
   $Lener["count"] = $count;
-  $Lener = array();
-  $Lener["body"] = array();
-  $Lener["count"] = $count;
+
 
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     extract($row);
@@ -26,9 +24,9 @@ if($count > 0){
     $p  = array(
       "Lener_ID" => $Lener_ID,
       "Lener_naam" => $Lener_naam,
-      "Lener_mobiel" => $Lener_merk,
-      "Lener_email" => $Lener_type,
-      "Lener_afd" => $Lener_status,
+      "Lener_mobiel" => $Lener_mobiel,
+      "Lener_email" => $Lener_email,
+      "Lener_afd" => $Lener_afd
     );
     array_push($Lener["body"], $p);
   }

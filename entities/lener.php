@@ -1,4 +1,4 @@
-<?php
+ <?php
 class Leners{
  
     // database connection and table name
@@ -47,6 +47,20 @@ class Leners{
      
         return false;
          
+    }
+    // read categories
+    function read(){
+     
+        // select all query
+        $query = "SELECT * FROM ". $this->table_name ."";
+     
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+     
+        // execute query
+        $stmt->execute();
+     
+        return $stmt;
     }
     public function update(){
         $query = "UPDATE

@@ -4,10 +4,10 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../../Config/database.php';
 include_once '../../entities/categories.php';
 
-$dbclass = new DBClass();
+$dbclass = new Database();
 $connection = $dbclass->getConnection();
 
-$Categories = new Categories($connection);
+$Categories = new Categorie($connection);
 
 $stmt = $Categories->read();
 $count = $stmt->rowCount();
