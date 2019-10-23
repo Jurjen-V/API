@@ -45,7 +45,7 @@ if(
         http_response_code(503);
  
         // tell the user
-        echo json_encode(array("message" => "Unable to create product."));
+        echo json_encode(array("message" => "Unable to create categorie."));
     }
 }
  
@@ -56,6 +56,6 @@ else{
     http_response_code(400);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to create categorie. Data is incomplete."));
 }
 ?>
