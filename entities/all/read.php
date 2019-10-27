@@ -4,10 +4,11 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../../Config/database.php';
 include_once '../../entities/all.php';
 
-$dbclass = new DBClass();
-$connection = $dbclass->getConnection();
+$dbclass = new Database();
 
+$connection = $dbclass->getConnection();
 $All = new All($connection);
+
 
 $stmt = $All->read_all();
 $count = $stmt->rowCount();
