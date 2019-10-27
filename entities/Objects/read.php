@@ -7,7 +7,7 @@ include_once '../../entities/objects.php';
 $dbclass = new Database();
 
 $connection = $dbclass->getConnection();
-$Objects = new Object($connection);
+$Objects = new Objects($connection);
 
 $stmt = $Objects->read();
 $count = $stmt->rowCount();

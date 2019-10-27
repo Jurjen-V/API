@@ -1,5 +1,5 @@
 <?php
-class Object{
+class Objects{
  
     // database connection and table name
     private $conn;
