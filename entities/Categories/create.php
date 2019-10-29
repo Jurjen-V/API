@@ -10,7 +10,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../../Config/database.php';
  
 // instantiate Categorie object
-include_once '../categorie.php';
+include_once '../categories.php';
  
 $database = new Database();
 $db = $database->getConnection();
