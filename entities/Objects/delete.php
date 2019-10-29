@@ -6,28 +6,28 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 // include database and object file
-include_once '../../Config/database.php';
-include_once '../Uitleen.php';
+include_once '../../config/database.php';
+include_once '../objects.php';
 // get database connection
 $database = new Database();
 $db = $database->getConnection();
 // prepare product object
-$uitleenData = new Uitleen($db);
+$object = new Objects($db);
 // get product id
 $data = json_decode(file_get_contents("php://input"));
 // set product id to be deleted
-$uitleenData->Uitleen_ID = $data->Uitleen_ID;
+$object->Object_ID = $data->Object_ID;
 // delete the product
-if($uitleenData->delete()){
+if($object->delete()){
     // set response code - 200 ok
     http_response_code(200);
     // tell the user
-    echo json_encode(array("message" => "Data was deleted."));
+    echo json_encode(array("message" => "Object deleted."));
 }
 // if unable to delete the product
 else{
     // set response code - 503 service unavailable
     http_response_code(503);
     // tell the user
-    echo json_encode(array("message" => "Unable to delete data."));
+    echo json_encode(array("message" => "Unable to delete object."));
 }

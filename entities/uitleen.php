@@ -94,4 +94,25 @@ class Uitleen{
  
    }
 
+   function delete(){
+           // delete query
+           $query = "DELETE FROM " . $this->table_name . " WHERE Uitleen_ID = ?";
+
+           // prepare query
+           $stmt = $this->conn->prepare($query);
+
+           // sanitize
+           $this->Uitleen_ID=htmlspecialchars(strip_tags($this->Uitleen_ID));
+
+           // bind id of record to delete
+           $stmt->bindParam(1, $this->Uitleen_ID);
+
+           // execute query
+           if($stmt->execute()){
+               return true;
+           }
+
+           return false;
+   }
+
 }

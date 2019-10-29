@@ -6,19 +6,19 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 // include database and object file
-include_once '../config/database.php';
-include_once '../objects/Category.php';
+include_once '../../config/database.php';
+include_once '../categories.php';
 // get database connection
-$database = new DBClass();
+$database = new Database();
 $db = $database->getConnection();
 // prepare product object
-$category = new Category($db);
+$category = new Categorie($db);
 // get product id
 $data = json_decode(file_get_contents("php://input"));
 // set product id to be deleted
 $category->Categorie_ID = $data->Categorie_ID;
 // delete the product
-if($category->deleteCategory()){
+if($category->delete()){
     // set response code - 200 ok
     http_response_code(200);
     // tell the user

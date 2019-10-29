@@ -73,7 +73,7 @@ class Leners{
             WHERE
                 Lener_ID = :Lener_ID";
         // prepare query statement
-        $stmt = $this->connection->prepare($query);
+        $stmt = $this->conn->prepare($query);
         // sanitize
         $this->Lener_ID=htmlspecialchars(strip_tags($this->Lener_ID));
         $this->Lener_naam=htmlspecialchars(strip_tags($this->Lener_naam));
@@ -92,4 +92,27 @@ class Leners{
         }
         return false;
     }
+        // delete the product
+        function delete(){
+
+            // delete query
+            $query = "DELETE FROM " . $this->table_name . " WHERE Lener_ID = ?";
+
+            // prepare query
+            $stmt = $this->conn->prepare($query);
+
+            // sanitize
+            $this->Lener_ID=htmlspecialchars(strip_tags($this->Lener_ID));
+
+            // bind id of record to delete
+            $stmt->bindParam(1, $this->Lener_ID);
+
+            // execute query
+            if($stmt->execute()){
+                return true;
+            }
+
+            return false;
+
+        }
 }

@@ -110,4 +110,25 @@ class Objects{
         }
         return false;
     }
+
+    function delete(){
+        // delete query
+        $query = "DELETE FROM " . $this->table_name . " WHERE Object_ID = ?";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // sanitize
+        $this->Object_ID=htmlspecialchars(strip_tags($this->Object_ID));
+
+        // bind id of record to delete
+        $stmt->bindParam(1, $this->Object_ID);
+
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+
+        return false;
+    }
 }
