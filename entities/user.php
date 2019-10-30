@@ -92,4 +92,45 @@ class Users{
 
         return false;
     }
+
+    public function update(){
+        $query = "UPDATE
+                " . $this->table_name . "
+            SET
+                firstname= :firstname,
+                lastname= :lastname,
+                email= :email,
+                password= :password,
+                created= :created,
+                modified= :modified,
+                ApiKey= :ApiKey
+            WHERE
+                id = :id";
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        // sanitize
+        $this->id=htmlspecialchars(strip_tags($this->id));
+        $this->firstname=htmlspecialchars(strip_tags($this->firstname));
+        $this->lastname=htmlspecialchars(strip_tags($this->lastname));
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $this->password=htmlspecialchars(strip_tags($this->password));
+        $this->created=htmlspecialchars(strip_tags($this->created));
+        $this->modified=htmlspecialchars(strip_tags($this->modified));
+        $this->ApiKey=htmlspecialchars(strip_tags($this->ApiKey));
+
+        // bind values
+        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":firstname", $this->firstname);
+        $stmt->bindParam(":lastname", $this->lastname);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":password", $this->password);
+        $stmt->bindParam(":created", $this->created);
+        $stmt->bindParam(":modified", $this->modified);
+        $stmt->bindParam(":ApiKey", $this->ApiKey);
+        // execute the query
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
 }

@@ -85,7 +85,7 @@ class Objects{
             WHERE
                 Object_ID = :Object_ID";
         // prepare query statement
-        $stmt = $this->connection->prepare($query);
+        $stmt = $this->conn->prepare($query);
         // sanitize
         $this->Object_ID=htmlspecialchars(strip_tags($this->Object_ID));
         $this->Object_naam=htmlspecialchars(strip_tags($this->Object_naam));

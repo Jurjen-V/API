@@ -73,7 +73,7 @@ class Uitleen{
             WHERE
                 Uitleen_ID = :Uitleen_ID";
         // prepare query statement
-        $stmt = $this->connection->prepare($query);
+        $stmt = $this->conn->prepare($query);
         // sanitize
         $this->Uitleen_ID=htmlspecialchars(strip_tags($this->Uitleen_ID));
         $this->Lener_ID=htmlspecialchars(strip_tags($this->Lener_ID));

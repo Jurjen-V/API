@@ -61,7 +61,7 @@ class Categorie{
             WHERE
                 Categorie_ID = :Categorie_ID";
         // prepare query statement
-        $stmt = $this->connection->prepare($query);
+        $stmt = $this->conn->prepare($query);
         // sanitize
         $this->Categorie_naam=htmlspecialchars(strip_tags($this->Categorie_naam));
         $this->Categorie_ID=htmlspecialchars(strip_tags($this->Categorie_ID));
