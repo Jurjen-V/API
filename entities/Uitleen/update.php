@@ -6,33 +6,31 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include_once '../../config/database.php';
 
-include_once '../../entities/user.php';
+include_once '../../entities/uitleen.php';
 include_once '../../entities/security.php';
 
 $dbclass = new Database();
 $connection = $dbclass->getConnection();
 
-$user = new Users($connection);
+
+$uitleen = new Uitleen($connection);
 
 $data = json_decode(file_get_contents("php://input"));
 
-// Set ID
-$user->id = $data->id;
+// Set ID property
+$uitleen->Uitleen_ID = $data->Uitleen_ID;
 
-// Set values
-$user->firstname = $data->firstname;
-$user->lastname = $data->lastname;
-$user->email = $data->email;
-$user->password = $data->password;
-$user->created = $data->created;
-$user->modified = $data->modified;
-$user->ApiKey = $data->ApiKey;
+//Set values
+$uitleen->Lener_ID = $data->Lener_ID;
+$uitleen->Object_ID = $data->Object_ID;
+$uitleen->Uitleendatum = $data->Uitleendatum;
+$uitleen->Inleverdatum = $data->Inleverdatum;
 
 // Update
-if($user->update()){
+if($uitleen->update()){
     http_response_code(200);
-    echo json_encode(array("message" => "User was updated."));
+    echo json_encode(array("message" => "Loaned item was updated."));
 }else{
     http_response_code(503);
-    echo json_encode(array("message" => "Unable to update user."));
+    echo json_encode(array("message" => "Unable to update loaned item."));
 }
