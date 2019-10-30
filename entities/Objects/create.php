@@ -10,25 +10,25 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../../Config/database.php';
  
 // instantiate object object
-include_once '../object.php';
+include_once '../objects.php';
  
 $database = new Database();
 $db = $database->getConnection();
  
-$Object = new Object($db);
+$Object = new Objects($db);
  
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
  
 // make sure data is not empty
 if(
-    !empty($data->Object_naam)&&
-    !empty($data->Object_merk) &&
-    !empty($data->Object_type) &&
-    !empty($data->Object_status) &&
-    !empty($data->Categorie_ID) &&
-    !empty($data->Object_img)&&
-    !empty($data->Object_description)
+    !empty($data->Object_naam) &&
+    !empty($data->Object_merk) 
+    // !empty($data->Object_type) &&
+    // !empty($data->Object_status) &&
+    // !empty($data->Categorie_ID) &&
+    // !empty($data->Object_img)&&
+    // !empty($data->Object_description)
 ){
  
     // set product property values
