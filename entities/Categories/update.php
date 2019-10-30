@@ -6,33 +6,27 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include_once '../../config/database.php';
 
-include_once '../../entities/user.php';
+include_once '../../entities/categories.php';
 include_once '../../entities/security.php';
 
 $dbclass = new Database();
 $connection = $dbclass->getConnection();
 
-$user = new Users($connection);
+$categorie = new Categorie($connection);
 
 $data = json_decode(file_get_contents("php://input"));
 
-// Set ID
-$user->id = $data->id;
+// Set ID property
+$categorie->Categorie_ID = $data->Categorie_ID;
 
 // Set values
-$user->firstname = $data->firstname;
-$user->lastname = $data->lastname;
-$user->email = $data->email;
-$user->password = $data->password;
-$user->created = $data->created;
-$user->modified = $data->modified;
-$user->ApiKey = $data->ApiKey;
+$categorie->Categorie_naam = $data->Categorie_naam;
 
 // Update
-if($user->update()){
+if($categorie->update()) {
     http_response_code(200);
-    echo json_encode(array("message" => "User was updated."));
+    echo json_encode(array("message" => "Category was updated."));
 }else{
     http_response_code(503);
-    echo json_encode(array("message" => "Unable to update user."));
+    echo json_encode(array("message" => "Unable to update category."));
 }
