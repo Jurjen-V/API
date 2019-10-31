@@ -25,10 +25,10 @@ if(
     !empty($data->firstname)&&
     !empty($data->lastname) &&
     !empty($data->email) &&
-    !empty($data->password) &&
-    !empty($data->created) &&
-    !empty($data->modified)&&
-    !empty($data->ApiKey)
+    !empty($data->password)
+    // !empty($data->created) &&
+    // !empty($data->modified)&&
+    // !empty($data->ApiKey)
 ){
  
     // set product property values

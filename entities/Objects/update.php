@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../../config/database.php';
 
 include_once '../../entities/objects.php';
-include_once '../../entities/security.php';
+//include_once '../../entities/security.php';
 
 $dbclass = new Database();
 $connection = $dbclass->getConnection();
